@@ -1,3 +1,6 @@
+# Power BI Dashboard
+Link: https://mavenshowcase.com/project/54651
+
 # From Raw Data to Retention: An End-to-End HR Intelligence Platform
 Built an automated, end-to-end HR intelligence platform designed to maximize workforce retention and optimize strategic planning by integrating Python ETL, SQL Star Schemas, Power BI dashboards, and XGBoost machine learning. This unified solution empowers executives to proactively predict attrition, monitor data governance, and run interactive "What-If" retention simulations via a custom Streamlit web app.
 
@@ -63,6 +66,3 @@ Replaced static BI tools with a fully interactive, Python-based Streamlit web ap
 - Business Intelligence: Power BI, DAX, M-Language (Power Query), Data Modeling.
 - Machine Learning: XGBoost, Scikit-Learn (Model Selection, Scaling, Evaluation), Predictive Modeling.
 - Web Application: Streamlit, Custom CSS.
-
-# Power BI Dashboard
-Link: https://mavenshowcase.com/project/54651
