@@ -63,3 +63,6 @@ Replaced static BI tools with a fully interactive, Python-based Streamlit web ap
 - Business Intelligence: Power BI, DAX, M-Language (Power Query), Data Modeling.
 - Machine Learning: XGBoost, Scikit-Learn (Model Selection, Scaling, Evaluation), Predictive Modeling.
 - Web Application: Streamlit, Custom CSS.
+
+# Power BI Dashboard
+Link: https://mavenshowcase.com/project/54651
