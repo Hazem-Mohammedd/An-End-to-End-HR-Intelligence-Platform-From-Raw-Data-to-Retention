@@ -1,55 +1,65 @@
 # HR-Data-Warehouse-Workforce-Intelligence-Platform
-Built an automated, end-to-end HR intelligence platform designed to maximize workforce retention and optimize strategic planning by integrating Python ETL, SQL Star Schemas, Power BI, and GenAI copilots into a unified interactive view. This solution empowers executives to predict attrition, query live data, and automate policy support.
+Built an automated, end-to-end HR intelligence platform designed to maximize workforce retention and optimize strategic planning by integrating Python ETL, SQL Star Schemas, Power BI dashboards, and XGBoost machine learning. This unified solution empowers executives to proactively predict attrition, monitor data governance, and run interactive "What-If" retention simulations via a custom Streamlit web app.
 
 # Project excerpt
-Designed and deployed a comprehensive HR Data & AI ecosystem, transforming legacy CSVs into a centralized SQL Star Schema, interactive Power BI dashboards, ML predictive models, and privacy-first local LLM copilots for automated workforce intelligence.
+Architected a full-stack HR Command Center integrating SQL warehousing with a Streamlit application. Features automated ETL, Power BI dashboard, data quality governance, XGBoost attrition prediction, and an interactive What-If retention simulator.
 
 # Business Case
 
-The company’s HR data was stored in old CSV systems that were not connected together. Because of this, reporting took a long time, there was no real-time view of workforce performance, and the company could not predict future HR trends.
-
-HR teams also spent too much time on repetitive manual tasks, such as answering common employee questions and preparing custom reports for management. This reduced their ability to focus on important strategic work.
+The company’s HR data was fragmented across disconnected CSV files, leading to slow reporting cycles, poor data governance, and a reactive approach to workforce management. Without a centralized data system, HR leadership lacked real-time visibility into workforce metrics and could not anticipate employee turnover. This reactive environment meant the company was losing high-performing talent simply because they could not identify flight risks early enough to intervene effectively.
 
 Project Goal
 
-The goal was to build and launch a complete HR intelligence platform that uses AI to improve decision-making.
+The objective was to architect and deploy a robust, end-to-end HR intelligence web application combining Data Engineering and Machine Learning. The system was designed to:
 
-The system was created to:
-
-- automate employee support tasks,
-- provide real-time HR data,
-- allow managers and executives to access reports easily, and
-- help the company move from reactive reporting to proactive planning and forecasting.
+- Automate the extraction, cleaning, and loading (ETL) of raw HR data.
+- Enforce strict data quality and governance standards.
+- Transition HR from reactive reporting to proactive planning using ML-based flight risk predictions.
+- Provide executives with a dynamic "What-If" simulator to test retention strategies and calculate intervention costs before making business decisions.
 
 # Process & Methodology
 
-1. Data Ingestion & Quality Automation Engineered robust Python-based ETL pipelines to automate the extraction of data from legacy CSV sources. Implemented strict programmatic preprocessing, regex-based data cleansing, and structural validation checks to enforce data quality and integrity before staging and loading into the database.
+1. Data Ingestion & Quality Automation
 
-2. Data Warehousing & Star Schema Architected a highly scalable enterprise Data Warehouse (HR_DW) on MS SQL Server. Designed a dimensional Star Schema topology, centralizing transactional data within a Fact_HR table, surrounded by conformed dimensions (Dim_Employee, Dim_Job, Dim_Location, Dim_Training). This structure was heavily optimized for high-performance analytical querying and reporting.
+Engineered a dynamiac Python-based ETL pipeline via a Streamlit interface. The system automates the ingestion of raw CSVs, performs programmatic data cleansing (handling missing records using business logic rather than blind statistical means), removes duplicates, and ensures structural integrity before pushing data to the database.
 
-3. Business Intelligence & Dashboards (Power BI) Integrated Power BI with the SQL Data Warehouse to democratize descriptive analytics. Engineered a dynamic Dim_Date table using M-Language to enable robust, highly flexible time-intelligence analysis across the dataset. Developed complex DAX measures to track critical KPIs (Headcount, Turnover Rate, Average Tenure) and delivered an interactive suite of enterprise dashboards capable of independently addressing ~80% of recurring managerial reporting needs.
+2. Enterprise Data Warehousing (SQL Server)
 
-4. Predictive Analytics Engine Transitioned the platform from descriptive to predictive by developing machine learning models capable of forecasting employee attrition. By analyzing historical workforce data, the engine identifies underlying risk patterns and flight-risk probabilities, empowering HR leadership with data-driven workforce planning and proactive retention strategies.
+Architected a scalable Data Warehouse (HR_DW) using MS SQL Server. Designed a dimensional Star Schema topology, centralizing transactional data within a Fact_HR table, surrounded by conformed dimensions (Dim_Job, Dim_Employee). Engineered robust T-SQL Merge (Upsert) logic to handle slowly changing dimensions and prevent data duplication during live updates.
 
-5. HR Policy Copilot (RAG System) Engineered a privacy-first, 100% offline Retrieval-Augmented Generation (RAG) system to automate employee support. Embedded complex HR handbooks and policy PDFs using nomic-embed-text and stored the vectors in a FAISS database. Leveraged local Large Language Models (phi3 / mistral) to provide employees with highly accurate, context-aware policy answers without exposing sensitive internal data to external cloud APIs.
+3. Business Intelligence & Dashboards (Power BI)
 
-6. Executive Data Copilot (Text-to-SQL) Designed a Manager-Facing AI Agent to bridge the gap between executives and raw data. This copilot translates natural language questions into highly optimized T-SQL queries, executes them directly against the HR_DW Star Schema, and returns real-time, tabular insights, allowing senior leaders to answer complex, ad-hoc business questions instantaneously.
+Integrated Power BI with the SQL Data Warehouse to democratize descriptive analytics. Engineered a dynamic Dim_Date table using M-Language to enable robust, highly flexible time-intelligence analysis across the dataset. Developed complex DAX measures to track critical KPIs (Headcount, Turnover Rate, Average Tenure) and delivered an interactive suite of enterprise dashboards capable of independently addressing ~80% of recurring managerial reporting needs.
+
+4. 4. Predictive Analytics Engine (XGBoost)
+
+Transitioned the platform to predictive analytics by addressing the classic "Imbalanced Classification" problem in HR data. Conducted offline model evaluation comparing Random Forest, SVM, and Logistic Regression. Overcame the "Accuracy Paradox" of Random Forest by selecting XGBoost as the champion model, heavily weighting it to optimize for Recall. This ensures the model accurately catches actual flight risks without overwhelming HR with false positive alarms.
+
+5. Interactive Web Application (Streamlit)
+
+Replaced static BI tools with a fully interactive, Python-based Streamlit web application. The platform features an Executive Command Center structured into three core modules:
+
+- Ingestion & ETL: One-click data uploads with live processing summaries.
+- Predictive Engine: Real-time ML scoring to identify top at-risk employees.
+- Retention 'What-If' Simulator & Governance: A strategic tool allowing HR to simulate how specific interventions (e.g., PayZone promotions or $2000 Leadership Training) mathematically reduce an employee's flight risk probability. It also features a live Data Quality Monitor comparing Staging vs. Fact tables to guarantee 100% data integrity.
 
 # Key Insights
 
-- Attrition Drivers: Uncovered hidden correlations between specific compensation zones, tenure milestones, and elevated flight risks.
-- Workforce Optimization: Identified distinct workforce distribution bottlenecks within critical business units, highlighting inefficiencies in the hiring pipeline.
-- Program Efficacy: Demonstrated a quantifiable link between specific onboarding/training programs and extended average employee tenure.
-Impact
+- The Accuracy Trap in HR ML: Discovered that standard accuracy metrics are highly misleading for attrition data. Random Forest achieved 81% accuracy but failed to identify real risks, proving that strategic model selection based on Recall is crucial for HR interventions.
+- Attrition Drivers: Uncovered that specific combinations of low pay scales (PayZones) and lack of professional training are the strongest predictors of employee turnover.
+- Intervention ROI: Demonstrated that offering premium leadership training is mathematically as effective as a minor salary bump in reducing flight risk, offering HR cost-effective retention alternatives.
+- Workforce Optimization: Identified distinct workforce distribution bottlenecks within critical business units through Power BI interactive cross-filtering, highlighting inefficiencies in the hiring pipeline.
 
-- 90% Reduction in Ad-Hoc Reporting: The Text-to-SQL Executive Copilot eliminated the traditional week-long wait times for custom data pulls, enabling real-time executive decision-making.
-- Massive Time Savings for HR: Automated 100% of routine policy inquiries via the RAG Copilot, freeing up dozens of hours monthly for HR business partners.
-- Proactive Risk Mitigation: Enabled targeted retention interventions months in advance through the deployment of early-warning predictive attrition scoring.
-- Enterprise Scalability: Established a single source of truth via the SQL Star Schema, laying a scalable foundation for all future People Analytics initiatives.
+# Impact
+
+- Massive Time Savings for HR: Automated 100% of routine data cleaning and ad-hoc reporting, freeing up dozens of hours monthly for HR business partners.
+- Proactive Risk Mitigation: Empowered HR to identify at-risk employees months in advance, shifting the department from exit interviews to preventive retention strategies.
+- Strategic Decision-Making: The What-If Simulator allowed executives to immediately view the estimated success rate of their retention budget, optimizing HR spending.
+- Zero-Defect Data Governance: The integrated live monitoring system ensures perfect referential integrity and instantly flags orphaned records.
 
 # Tools & Technologies Used
 
-- Data Engineering: Python (Pandas), MS SQL Server, T-SQL, ODBC.
-- Business Intelligence: Power BI, DAX, M-Language (Power Query), Data Modeling (Star Schema).
-- Artificial Intelligence: Local LLMs (Ollama, Phi-3, Mistral, Nomic-Embed-Text), LangChain, FAISS Vector Database, Streamlit (UI/UX).
-- Machine Learning: Scikit-Learn, Predictive Modeling.
+- Data Engineering: Python (Pandas), MS SQL Server, T-SQL (Stored Procedures, MERGE), ODBC.
+- Business Intelligence: Power BI, DAX, M-Language (Power Query), Data Modeling.
+- Machine Learning: XGBoost, Scikit-Learn (Model Selection, Scaling, Evaluation), Predictive Modeling.
+- Web Application: Streamlit, Custom CSS.
