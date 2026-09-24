@@ -1,4 +1,4 @@
-# HR-Data-Warehouse-Workforce-Intelligence-Platform
+# From Raw Data to Retention: An End-to-End HR Intelligence Platform
 Built an automated, end-to-end HR intelligence platform designed to maximize workforce retention and optimize strategic planning by integrating Python ETL, SQL Star Schemas, Power BI dashboards, and XGBoost machine learning. This unified solution empowers executives to proactively predict attrition, monitor data governance, and run interactive "What-If" retention simulations via a custom Streamlit web app.
 
 # Project excerpt
@@ -19,23 +19,23 @@ The objective was to architect and deploy a robust, end-to-end HR intelligence w
 
 # Process & Methodology
 
-1. Data Ingestion & Quality Automation
+## 1. Data Ingestion & Quality Automation
 
 Engineered a dynamiac Python-based ETL pipeline via a Streamlit interface. The system automates the ingestion of raw CSVs, performs programmatic data cleansing (handling missing records using business logic rather than blind statistical means), removes duplicates, and ensures structural integrity before pushing data to the database.
 
-2. Enterprise Data Warehousing (SQL Server)
+## 2. Enterprise Data Warehousing (SQL Server)
 
 Architected a scalable Data Warehouse (HR_DW) using MS SQL Server. Designed a dimensional Star Schema topology, centralizing transactional data within a Fact_HR table, surrounded by conformed dimensions (Dim_Job, Dim_Employee). Engineered robust T-SQL Merge (Upsert) logic to handle slowly changing dimensions and prevent data duplication during live updates.
 
-3. Business Intelligence & Dashboards (Power BI)
+## 3. Business Intelligence & Dashboards (Power BI)
 
 Integrated Power BI with the SQL Data Warehouse to democratize descriptive analytics. Engineered a dynamic Dim_Date table using M-Language to enable robust, highly flexible time-intelligence analysis across the dataset. Developed complex DAX measures to track critical KPIs (Headcount, Turnover Rate, Average Tenure) and delivered an interactive suite of enterprise dashboards capable of independently addressing ~80% of recurring managerial reporting needs.
 
-4. 4. Predictive Analytics Engine (XGBoost)
+## 4. Predictive Analytics Engine (XGBoost)
 
 Transitioned the platform to predictive analytics by addressing the classic "Imbalanced Classification" problem in HR data. Conducted offline model evaluation comparing Random Forest, SVM, and Logistic Regression. Overcame the "Accuracy Paradox" of Random Forest by selecting XGBoost as the champion model, heavily weighting it to optimize for Recall. This ensures the model accurately catches actual flight risks without overwhelming HR with false positive alarms.
 
-5. Interactive Web Application (Streamlit)
+## 5. Interactive Web Application (Streamlit)
 
 Replaced static BI tools with a fully interactive, Python-based Streamlit web application. The platform features an Executive Command Center structured into three core modules:
 
